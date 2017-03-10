@@ -18,3 +18,7 @@ Route::get('/', function () {
 Route::get('public', function () {
     return view('Biodata');
 });
+
+Route::get('pengguna/{pengguna}', function($pengguna) {
+    return("Hello Manis dari Dia $pengguna");
+});
