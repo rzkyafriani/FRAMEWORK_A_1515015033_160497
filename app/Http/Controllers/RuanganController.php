@@ -1,28 +1,41 @@
 <?php
 
- 
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Ruangan;
 class RuanganController extends Controller
 {
     public function awal(){
-    	return "Ini ruangan bebas rokok";
+        return view('ruangan.awal', ['data'=>Ruangan::all()]);
     }
-
-    public function tambah()
-    {
-    	return $this->simpan();
+    public function tambah(){
+        return view('ruangan.tambah');
     }
-    public function simpan()
-    {
-    	$ruangan = new Ruangan();
-    	$ruangan->title='411A/B';
-    	$ruangan->save();
-    	return "Data dengan ruangan {$ruangan->title} telah disimpan";
-
+    public function simpan(Request $input){
+        $ruangan = new Ruangan();
+        $ruangan->title= $input->title;
+        $informasi = $ruangan->save() ? 'Berhasil Simpan Data' : 'Gagal Simpan Data'; 
+        return redirect('ruangan')->with(['informasi'=>$informasi]);
+    }
+    public function edit($id){
+        $ruangan = Ruangan::find($id);
+        return view('ruangan.edit')->with(array('ruangan'=>$ruangan));
+    }
+    public function lihat($id){
+        $ruangan = Ruangan::find($id);
+        return view('ruangan.lihat')->with(array('ruangan'=>$ruangan));
+    }
+    public function update(Request $input, $id ){
+        $ruangan = Ruangan::find($id);
+        $ruangan->title = $input->title;
+        $informasi = $ruangan->save() ? 'Berhasil Update Data' : 'Gagal Update Data'; 
+        return redirect('ruangan')->with(['informasi'=>$informasi]);
+    }
+    public function hapus($id){
+        $ruangan = Ruangan::find($id);
+        $informasi = $ruangan->delete() ? 'Berhasil Hapus Data' : 'Gagal JHapus Data'; 
+        return redirect('ruangan')->with(['informasi'=>$informasi]); 
     }
 }
