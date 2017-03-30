@@ -24,7 +24,7 @@
 		<tr>
 			<td class="col-xs-4">Diperbarui tanggal</td>
 			<td class="col-xs-1">:</td>
-			<td>{{$ruangan->updated_at }}</td>
+			<td>{{$ruangan->updated_ at }}</td>
 		</tr>
 	</table>
 </div>
