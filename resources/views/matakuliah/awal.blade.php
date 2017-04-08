@@ -21,7 +21,7 @@
 		<?php $x=1; ?>
 		@foreach($data as $matakuliah)
 		<td>{{ $x++ }}</td>
-		<td>{{ $matakuliah->title or 'Title Kosong' }}</td>
+		<td>{{ $matakuliah->titile or 'Title Kosong' }}</td>
 		<td>{{ $matakuliah->keterangan or 'Keterangan Kosong' }}	</td>
 		<td>
 			<div class="btn-group" role="group">

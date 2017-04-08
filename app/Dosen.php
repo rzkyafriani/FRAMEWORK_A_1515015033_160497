@@ -11,11 +11,18 @@ class Dosen extends Model
     }
 
     public function dosen_matakuliah(){
-    	return $this->hasMany(Dosen_Matakuliah::class);
+    	return $this->hasMany(dosen_matakuliah::class);
     }
 
     protected $table = 'dosen';
     protected $fillable = ['nama','nip','alamat','pengguna_id'];
 
-
+    public function listDosenDanNip()
+{
+    $out = [];
+    foreach ($this->all() as $dsn) {
+        $out[$dsn->id] = "{$dsn->nama} ({$dsn->nip})";
+    }
+return $out;
+}
 }
